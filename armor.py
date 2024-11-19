@@ -7,7 +7,7 @@ class Armor:
         max_block: Integer
     '''
     self.name = name
-    self.max+block = max_block
+    self.max_block = max_block
 
 
 def block(self):
