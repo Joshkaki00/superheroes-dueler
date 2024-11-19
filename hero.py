@@ -1,3 +1,5 @@
+import random
+
 # hero.py
 class Hero:
   # We want our hero to have a default "starting_health",
@@ -8,18 +10,21 @@ class Hero:
       starting_health: Integer
       current_health: Integer
     '''
-
-    # we know the name of our hero, so we assign it here
     self.name = name
-    # similarly, our starting health is passed in, just like name
     self.starting_health = starting_health
-    # when a hero is created, their current health is
-    # always the same as their starting health (no damage taken yet!)
     self.current_health = starting_health
 
+    def fight(self, opponent):
+        ''' Current Hero will take turns fighting the opponent hero passed in.
+        '''
+        # Randomly declare winner
+        winner = random.choice([self, opponent])
+        # Print name of the winner
+        print(f"{winner.name} won!")
+
 if __name__ == "__main__":
-# If you run this file from the terminal
-# this block is executed.
-    my_hero = Hero("Grace Hopper", 200)
-    print(my_hero.name)
-    print(my_hero.current_health)
+    hero1 = Hero("Wonder Woman", 150)
+    hero2 = Hero("Dumbledore", 200)
+
+    # Start fight!
+    hero1.fight(hero2)
