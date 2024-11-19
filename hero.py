@@ -44,5 +44,9 @@ if __name__ == "__main__":
   hero1 = Hero("Wonder Woman", 150)
   hero2 = Hero("Dumbledore", 200)
 
+  ability = Ability("Debugging Ability", 20)
+  print(ability.name)
+  print(ability.attack())
+
   # Start fight!
   hero1.fight(hero2)
