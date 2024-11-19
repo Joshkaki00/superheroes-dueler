@@ -34,11 +34,11 @@ class Ability:
     self.name = name
     self.max_damage = max_damage
 
-    def attack(self):
+  def attack(self):
 
-      # Pick random value between 0 and the max_damage set
-      random_value = random.randint(0, self.max_damage)
-      return random_value
+    # Pick random value between 0 and the max_damage set
+    random_value = random.randint(0, self.max_damage)
+    return random_value
 
 if __name__ == "__main__":
   hero1 = Hero("Wonder Woman", 150)
