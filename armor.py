@@ -1,3 +1,5 @@
+import random
+
 class Armor:
   def __init__(self, name, max_block):
     '''Instantiate instance properties.
@@ -9,6 +11,4 @@ class Armor:
 
 
 def block(self):
-# TODO: Return a random value between 0 and the
-# initialized max_block strength.
-    pass
+    return random.randint(0, self.max_block)
