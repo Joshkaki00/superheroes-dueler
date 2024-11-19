@@ -14,13 +14,13 @@ class Hero:
     self.starting_health = starting_health
     self.current_health = starting_health
 
-    def fight(self, opponent):
-      ''' Current Hero will take turns fighting the opponent hero passed in.
-      '''
-      # Randomly declare winner
-      winner = random.choice([self, opponent])
-      # Print name of the winner
-      print(f"{winner.name} won!")
+  def fight(self, opponent):
+    ''' Current Hero will take turns fighting the opponent hero passed in.
+    '''
+    # Randomly declare winner
+    winner = random.choice([self, opponent])
+    # Print name of the winner
+    print(f"{winner.name} won!")
 
 if __name__ == "__main__":
   hero1 = Hero("Wonder Woman", 150)
