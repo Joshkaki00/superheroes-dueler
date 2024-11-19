@@ -4,5 +4,11 @@ class Armor:
         name: String
         max_block: Integer
     '''
-    # TODO: Create instance variables for the values passed in.
+    self.name = name
+    self.max+block = max_block
+
+
+def block(self):
+# TODO: Return a random value between 0 and the
+# initialized max_block strength.
     pass
