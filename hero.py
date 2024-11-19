@@ -22,6 +22,24 @@ class Hero:
     # Print name of the winner
     print(f"{winner.name} won!")
 
+class Ability:
+  def __init__(self, name, max_damage):
+    '''
+    Initialize the values passed into this
+    method as instance variables.
+    '''
+
+    # Assign the "name" and "max_damage"
+    # for a specific instance of the Ability class
+    self.name = name
+    self.max_damage = max_damage
+
+    def attack(self):
+
+      # Pick random value between 0 and the max_damage set
+      random_value = random.randint(0, self.max_damage)
+      return random_value
+
 if __name__ == "__main__":
   hero1 = Hero("Wonder Woman", 150)
   hero2 = Hero("Dumbledore", 200)
