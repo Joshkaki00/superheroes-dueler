@@ -11,3 +11,18 @@ class Ability:
     # for a specific instance of the Ability class
     self.name = name
     self.max_damage = max_damage
+
+  def attack(self):
+    random_value = random.randint(0, self.max_damage)
+    return random_value
+
+# Test the Ability class
+
+if __name__ == "__main__":
+  ability = Ability("Super Punch", 50)
+
+# Print the ability name
+print(ability.name)
+
+# Test attack method
+print(ability.attack())
