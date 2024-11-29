@@ -26,7 +26,7 @@ class Hero:
 
   def attack(self):
     ''' Calculate total damage from all abilities '''
-    total_damage = sum([ability.attack() for ability in self.abilities])
+    total_damage = sum(ability.attack() for ability in self.abilities)
     return total_damage
 
   def add_armor(self, armor):
@@ -35,7 +35,7 @@ class Hero:
 
   def defend(self, incoming_damage):
     ''' Calculate total block amount from all armors '''
-    total_block = sum([armor.block() for armor in self.armors])
+    total_block = sum(armor.block() for armor in self.armors)
     damage_blocked = max(0, incoming_damage - total_block)
     return damage_blocked
 
