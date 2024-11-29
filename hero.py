@@ -64,9 +64,11 @@ class Hero:
       print(f"{opponent.name} attacks {self.name} for {opponent_damage} damage!")
 
     if self.is_alive():
+      print(f"{self.name} wins!")
       self.kills += 1
       opponent.deaths += 1
     elif opponent.is_alive():
+      print(f"{opponent.name} wins!")
       opponent.kills += 1
       self.deaths += 1
     else:
