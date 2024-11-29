@@ -15,14 +15,14 @@ class Hero:
     self.name = name
     self.starting_health = starting_health
     self.current_health = starting_health
+    self.abilities = []
+    self.armors = []
+    self.deaths = 0
+    self.kills = 0
 
-  def fight(self, opponent):
-    ''' Current Hero will take turns fighting the opponent hero passed in.
-    '''
-    # Randomly declare winner
-    winner = random.choice([self, opponent])
-    # Print name of the winner
-    print(f"{winner.name} won!")
+  def add_ability(self, ability):
+    ''' Add ability to abilities list '''
+    self.abilities.append(ability)
 
 class Ability:
   def __init__(self, name, max_damage):
