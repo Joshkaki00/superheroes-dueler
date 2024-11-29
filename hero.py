@@ -24,31 +24,48 @@ class Hero:
     ''' Add ability to abilities list '''
     self.abilities.append(ability)
 
-class Ability:
-  def __init__(self, name, max_damage):
-    '''
-    Initialize the values passed into this
-    method as instance variables.
-    '''
-
-    # Assign the "name" and "max_damage"
-    # for a specific instance of the Ability class
-    self.name = name
-    self.max_damage = max_damage
-
   def attack(self):
+    ''' Calculate total damage from all abilities '''
+    total_damage = sum([ability.attack() for ability in self.abilities])
+    return total_damage
 
-    # Pick random value between 0 and the max_damage set
-    random_value = random.randint(0, self.max_damage)
-    return random_value
+  def add_armor(self, armor):
+    ''' Add armor to armors list '''
+    self.armors.append(armor)
 
-if __name__ == "__main__":
-  hero1 = Hero("Wonder Woman", 150)
-  hero2 = Hero("Dumbledore", 200)
+  def defend(self, incoming_damage):
+    ''' Calculate total block amount from all armors '''
+    total_block = sum([armor.block() for armor in self.armors])
+    damage_blocked = max(0, incoming_damage - total_block)
+    return damage_blocked
 
-  ability = Ability("Debugging Ability", 20)
-  print(ability.name)
-  print(ability.attack())
+  def take_damage(self, damage):
+    ''' Update current_health with damage '''
+    damage_after_block = self.defend(damage)
+    self.current_health -= damage_after_block
+    if self.current_health <= 0:
+      self.current_health = 0
+      self.deaths += 1
 
-  # Start fight!
-  hero1.fight(hero2)
+  def is_alive(self):
+    ''' Return True or False depending on whether the hero is alive or not '''
+    return self.current_health > 0
+
+  def fight(self, opponent):
+    ''' Engage in a battle with another hero '''
+    while self.is_alive() and opponent.is_alive():
+      self_damage = self.attack()
+      opponent_damage = opponent.attack()
+
+      opponent.take_damage(self_damage)
+      self.take_damage(opponent_damage)
+
+      print(f"{self.name} attacks {opponent.name} for {self_damage} damage!")
+      print(f"{opponent.name} attacks {self.name} for {opponent_damage} damage!")
+
+    if self.is_alive():
+      self.kills += 1
+      opponent.deaths += 1
+    elif opponent.is_alive():
+      opponent.kills += 1
+      self.deaths += 1
