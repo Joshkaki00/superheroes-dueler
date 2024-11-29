@@ -34,70 +34,81 @@ class Hero:
     self.armors.append(armor)
 
   def defend(self, incoming_damage):
-    ''' Calculate total block amount from all armors '''
+    '''Calculate the total block amount from all armor blocks.'''
+    if self.current_health <= 0:  # Dead heroes can't block
+      return 0
     total_block = sum(armor.block() for armor in self.armors)
-    damage_blocked = max(0, incoming_damage - total_block)
-    return damage_blocked
+    return max(0, total_block)  # Ensure block value is non-negative
 
   def take_damage(self, damage):
-    ''' Update current_health with damage '''
-    damage_after_block = self.defend(damage)
-    self.current_health -= damage_after_block
-    if self.current_health <= 0:
+    '''Update current_health to reflect the damage minus the defense.'''
+    defense = self.defend(damage)
+    net_damage = max(0, damage - defense)  # Ensure damage isn't negative
+    self.current_health -= net_damage
+    if self.current_health < 0:
       self.current_health = 0
-      self.deaths += 1
 
   def is_alive(self):
-    ''' Return True or False depending on whether the hero is alive or not '''
+    '''Return True or False depending on whether the hero is alive or not.'''
     return self.current_health > 0
 
   def fight(self, opponent):
-    ''' Engage in a battle with another hero '''
+    '''Current Hero will take turns fighting the opponent hero passed in.'''
+    # 0) Check if at least one hero has abilities
+    if not self.abilities and not opponent.abilities:
+      print("Draw! Neither hero has abilities.")
+      return
+
+    # 1) Start the fighting loop until a hero has won
     while self.is_alive() and opponent.is_alive():
+      # Calculate damage dealt by each hero
       self_damage = self.attack()
       opponent_damage = opponent.attack()
 
+      # Apply damage to each hero
       opponent.take_damage(self_damage)
       self.take_damage(opponent_damage)
 
       print(f"{self.name} attacks {opponent.name} for {self_damage} damage!")
       print(f"{opponent.name} attacks {self.name} for {opponent_damage} damage!")
 
-    if self.is_alive():
-      print(f"{self.name} wins!")
-      self.kills += 1
-      opponent.deaths += 1
-    elif opponent.is_alive():
-      print(f"{opponent.name} wins!")
-      opponent.kills += 1
-      self.deaths += 1
-    else:
-      print("Both heroes have fallen!")
+      # 3) Check if either hero is alive
+      if not opponent.is_alive() and not self.is_alive():
+        print("Both heroes have fallen! It's a draw!")
+        return
+      elif not opponent.is_alive():
+        print(f"{self.name} won!")
+        self.kills += 1
+        opponent.deaths += 1
+        return
+      elif not self.is_alive():
+        print(f"{opponent.name} won!")
+        opponent.kills += 1
+        self.deaths += 1
+        return
 
-# Test hero class
+
+# Test code
 if __name__ == "__main__":
   # Create abilities
-  super_punch = Ability("Super Punch", 50)
-  heavy_attack = Ability("Heavy Attack", 85)
-  shield_bash = Ability("Shield Bash", 35)
+  ability1 = Ability("Super Speed", 300)
+  ability2 = Ability("Super Eyes", 130)
+  ability3 = Ability("Wizard Wand", 80)
+  ability4 = Ability("Wizard Beard", 20)
 
-  # Create armor
-  shield = Armor("Steel Shield", 50)
-  chestplate = Armor("Bronze Chestplate", 25)
+  # Create heroes
+  hero1 = Hero("Wonder Woman")
+  hero2 = Hero("Dumbledore")
 
-  # Create hero
-  hero1 = Hero("Elise", 200)
-  hero2 = Hero("Lanavaille", 200)
+  # Add abilities to heroes
+  hero1.add_ability(ability1)
+  hero1.add_ability(ability2)
+  hero2.add_ability(ability3)
+  hero2.add_ability(ability4)
 
-  # Add abilities and armor to hero1
-  hero1.add_ability(super_punch)
-  hero1.add_ability(heavy_attack)
-  hero1.add_armor(shield)
-  hero1.add_armor(chestplate)
+  # Add armor to heroes
+  hero1.add_armor(Armor("Shield", 50))
+  hero2.add_armor(Armor("Magic Robe", 40))
 
-  # Add abilities and armor to hero2
-  hero2.add_ability(shield_bash)
-  hero2.add_ability(Ability("Iron Helmet", 30))
-
-  # Start fight
+  # Engage in a fight
   hero1.fight(hero2)
