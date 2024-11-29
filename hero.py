@@ -96,3 +96,6 @@ if __name__ == "__main__":
   # Add abilities and armor to hero2
   hero2.add_ability(shield_bash)
   hero2.add_ability(Armor("Iron Helmet", 30))
+
+  # Start fight
+  hero1.fight(hero2)
