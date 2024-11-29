@@ -1,4 +1,6 @@
 import random
+from ability import Ability
+from armor import Armor
 
 # hero.py
 class Hero:
