@@ -76,11 +76,23 @@ class Hero:
 if __name__ == "__main__":
   # Create abilities
   super_punch = Ability("Super Punch", 50)
-  fire_blast = Ability("Fire Blast", 75)
+  heavy_attack = Ability("Heavy Attack", 85)
+  shield_bash = Ability("Shield Bash", 35)
 
   # Create armor
   shield = Armor("Steel Shield", 50)
   chestplate = Armor("Bronze Chestplate", 25)
 
   # Create hero
-  
+  hero1 = Hero("Elise", 200)
+  hero2 = Hero("Lanavaille", 200)
+
+  # Add abilities and armor to hero1
+  hero1.add_ability(super_punch)
+  hero1.add_ability(heavy_attack)
+  hero1.add_armor(shield)
+  hero1.add_armor(chestplate)
+
+  # Add abilities and armor to hero2
+  hero2.add_ability(shield_bash)
+  hero2.add_ability(Armor("Iron Helmet", 30))
