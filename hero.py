@@ -33,8 +33,7 @@ class Hero:
     ''' Add armor to armors list '''
     self.armors.append(armor)
 
-  def defend(self, incoming_damage):
-    '''Calculate the total block amount from all armor blocks.'''
+  def defend(self):
     if self.current_health <= 0:  # Dead heroes can't block
       return 0
     total_block = sum(armor.block() for armor in self.armors)
