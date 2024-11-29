@@ -33,17 +33,16 @@ class Hero:
     ''' Add armor to armors list '''
     self.armors.append(armor)
 
-  def defend(self):
+  def defend(self, incoming_damage):
     if self.current_health <= 0:  # Dead heroes can't block
       return 0
     total_block = sum(armor.block() for armor in self.armors)
-    return max(0, total_block)  # Ensure block value is non-negative
+    return max(0, incoming_damage - total_block)  # Ensure block value is non-negative
 
   def take_damage(self, damage):
     '''Update current_health to reflect the damage minus the defense.'''
-    defense = self.defend(damage)
-    net_damage = max(0, damage - defense)  # Ensure damage isn't negative
-    self.current_health -= net_damage
+    damage_after_defense = self.defend(damage)
+    self.current_health -= damage_after_defense
     if self.current_health < 0:
       self.current_health = 0
 
