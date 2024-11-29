@@ -69,3 +69,18 @@ class Hero:
     elif opponent.is_alive():
       opponent.kills += 1
       self.deaths += 1
+    else:
+      print("Both heroes have fallen!")
+
+# Test hero class
+if __name__ == "__main__":
+  # Create abilities
+  super_punch = Ability("Super Punch", 50)
+  fire_blast = Ability("Fire Blast", 75)
+
+  # Create armor
+  shield = Armor("Steel Shield", 50)
+  chestplate = Armor("Bronze Chestplate", 25)
+
+  # Create hero
+  
