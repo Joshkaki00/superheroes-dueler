@@ -21,8 +21,8 @@ class Ability:
 if __name__ == "__main__":
   ability = Ability("Super Punch", 50)
 
-# Print the ability name
-print(ability.name)
+  # Print the ability name
+  print(ability.name)
 
-# Test attack method
-print(ability.attack())
+  # Test attack method
+  print(ability.attack())
