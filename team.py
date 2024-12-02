@@ -33,3 +33,22 @@ if __name__ == "__main__":
 
 # Create team
 team = Team("Justice League")
+
+# Add heroes to the team
+team.add_hero(hero1)
+team.add_hero(hero2)
+team.add_hero(hero3)
+
+# Print heroes
+print("Team members:")
+team.view_all_heroes()
+
+# Remove a hero and print updated team
+removed_hero = team.remove_hero("Iron Man")
+if removed_hero:
+    print(f"\nRemoved hero: {removed_hero.name}")
+else:
+    print(f"\n Hero not found!")
+
+print(f"\nUpdated team members:")
+team.view_all_heroes()
