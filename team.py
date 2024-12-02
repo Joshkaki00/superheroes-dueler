@@ -25,9 +25,9 @@ class Team:
         ''' Print the names of all heroes on the team.'''
         if not self.heroes:
             print("No heroes on this team.")
-            return
-        for hero in self.heroes:
-            print(hero.name)
+        else:
+            for hero in self.heroes:
+                print(hero.name)
 
     def stats(self):
         ''' Print team statistics'''
