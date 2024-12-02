@@ -18,7 +18,7 @@ class Team:
             if hero.name == name:
                 self.heroes.remove(hero)
                 return hero
-        return 0
+        return None
 
     def view_all_heroes(self):
         ''' Print the names of all heroes on the team.'''
@@ -30,6 +30,9 @@ class Team:
 
 # Test Team class
 if __name__ == "__main__":
+    # Add a __str__ method to Hero class
+    Hero.__str__ = lambda self: self.name
+
     # Create heroes
     hero1 = Hero("Wonder Woman", 200)
     hero2 = Hero("Iron Man", 150)
