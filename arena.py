@@ -76,3 +76,10 @@ class Arena:
         if team_one_deaths == 0:
             team_one_deaths = 1
         print(f"Team One average K/D: {team_one_kills/team_one_deaths:.2f}")
+
+        # Calculate Team Two's average K/D
+        team_two_kills = sum(hero.kills for hero in self.team_two.heroes)
+        team_two_deaths = sum(hero.deaths for hero in self.team_two.heroes)
+        if team_two_deaths == 0:
+            team_two_deaths = 1
+        print(f"Team Two average K/D: {team_two_kills/team_two_deaths:.2f}")
