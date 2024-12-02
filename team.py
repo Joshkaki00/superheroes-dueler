@@ -34,3 +34,14 @@ class Team:
         for hero in self.heroes:
             kd_ratio = hero.kills / hero.deaths if hero.deaths > 0 else hero.kills
             print(f"{hero.name} Kill/Deaths: {kd_ratio}")
+
+    def revive_heroes(self):
+        ''' Reset all heroes health to starting_health'''
+        for hero in self.heroes:
+            hero.current_health = hero.starting_health
+
+    def attack(self, other_team):
+        ''' Battle each team against each other'''
+        living_heroes = [hero for hero in self.heroes if hero.is_alive()]
+        living_opponents = [hero for hero in other_team.heroes if hero.is_alive()]
+
