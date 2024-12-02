@@ -13,14 +13,20 @@ class Team:
     def remove_hero(self, name):
         ''' Remove a hero from the team by name.
         If hero isn't found, return None.'''
+        foundHero = False
         for hero in self.heroes:
             if hero.name == name:
                 self.heroes.remove(hero)
-                return hero
-        return None # Hero not found
+                foundHero = True
+                break
+        if not foundHero:
+            return 0
 
     def view_all_heroes(self):
         ''' Print the names of all heroes on the team.'''
+        if not self.heroes:
+            print("No heroes on this team.")
+            return
         for hero in self.heroes:
             print(hero.name)
 
@@ -31,17 +37,17 @@ if __name__ == "__main__":
     hero2 = Hero("Iron Man", 150)
     hero3 = Hero("Deadpool", 180)
 
-# Create team
-team = Team("Justice League")
+    # Create team
+    team = Team("Justice League")
 
-# Add heroes to the team
-team.add_hero(hero1)
-team.add_hero(hero2)
-team.add_hero(hero3)
+    # Add heroes to the team
+    team.add_hero(hero1)
+    team.add_hero(hero2)
+    team.add_hero(hero3)
 
-# Print heroes
-print("Team members:")
-team.view_all_heroes()
+    # Print heroes
+    print("Team members:")
+    team.view_all_heroes()
 
 # Remove a hero and print updated team
 removed_hero = team.remove_hero("Iron Man")
