@@ -7,8 +7,11 @@ class Team:
         self.heroes = []
 
     def add_hero(self, hero):
-        ''' Add a hero to list of heroes.'''
-        self.heroes.append(hero)
+        '''Add a hero to the list of heroes.'''
+        if isinstance(hero, Hero):
+            self.heroes.append(hero)
+        else:
+            print(f"Invalid hero object: {hero}. Only Hero instances can be added.")
 
     def remove_hero(self, name):
         ''' Remove a hero from the team by name.
