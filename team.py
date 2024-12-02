@@ -49,12 +49,12 @@ if __name__ == "__main__":
     print("Team members:")
     team.view_all_heroes()
 
-# Remove a hero and print updated team
-removed_hero = team.remove_hero("Iron Man")
-if removed_hero:
-    print(f"\nRemoved hero: {removed_hero.name}")
-else:
-    print(f"\n Hero not found!")
+    # Remove a hero and print updated team
+    removed_hero = team.remove_hero("Iron Man")
+    if removed_hero == 0:
+        print(f"\nHero not found!")
+    else:
+        print(f"\nRemoved hero: {removed_hero.name}")
 
-print(f"\nUpdated team members:")
-team.view_all_heroes()
+    print(f"\nUpdated team members:")
+    team.view_all_heroes()
