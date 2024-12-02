@@ -1,3 +1,6 @@
+import random
+from hero import Hero
+
 class Team:
     def __init__(self, name):
         ''' Initialize team with a name and an empty list of heroes.'''
@@ -25,3 +28,9 @@ class Team:
             return
         for hero in self.heroes:
             print(hero.name)
+
+    def stats(self):
+        ''' Print team statistics'''
+        for hero in self.heroes:
+            kd_ratio = hero.kills / hero.deaths if hero.deaths > 0 else hero.kills
+            print(f"{hero.name} Kill/Deaths: {kd_ratio}")
