@@ -36,8 +36,6 @@ class Hero:
     self.armors.append(armor)
 
   def defend(self, incoming_damage):
-    if self.current_health <= 0:  # Dead heroes can't block
-      return 0
     total_block = sum(armor.block() for armor in self.armors)
     return max(0, incoming_damage - total_block)  # Ensure block value is non-negative
 
@@ -51,6 +49,14 @@ class Hero:
   def is_alive(self):
     '''Return True or False depending on whether the hero is alive or not.'''
     return self.current_health > 0
+
+  def add_kill(self, num_kills):
+    ''' Update kills with num_kills'''
+    self.kills += num_kills
+
+  def add_death(self, num_deaths):
+    ''' Update deaths with num_deaths'''
+    self.deaths += num_deaths
 
   def fight(self, opponent):
     '''Current Hero will take turns fighting the opponent hero passed in.'''
@@ -73,19 +79,16 @@ class Hero:
       print(f"{opponent.name} attacks {self.name} for {opponent_damage} damage!")
 
       # 3) Check if either hero is alive
-      if not opponent.is_alive() and not self.is_alive():
-        print("Both heroes have fallen! It's a draw!")
-        return
-      elif not opponent.is_alive():
+      if self.is_alive() and not opponent.is_alive():
+        self.add_kill(1)
+        opponent.add_death(1)
         print(f"{self.name} won!")
-        self.kills += 1
-        opponent.deaths += 1
-        return
-      elif not self.is_alive():
+      elif not self.is_alive() and opponent.is_alive():
+        opponent.add_kill(1)
+        self.add_death(1)
         print(f"{opponent.name} won!")
-        opponent.kills += 1
-        self.deaths += 1
-        return
+      else:
+        print("Both heroes have fallen!")
 
 
 # Test code
