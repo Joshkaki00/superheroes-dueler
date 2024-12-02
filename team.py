@@ -16,7 +16,7 @@ class Team:
             if hero.name == name:
                 self.heroes.remove(hero)
                 return hero
-        return None
+        return 0
 
     def view_all_heroes(self):
         ''' Print the names of all heroes on the team.'''
