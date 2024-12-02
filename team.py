@@ -18,3 +18,18 @@ class Team:
                 self.heroes.remove(hero)
                 return hero
         return None # Hero not found
+
+    def view_all_heroes(self):
+        ''' Print the names of all heroes on the team.'''
+        for hero in self.heroes:
+            print(hero.name)
+
+# Test Team class
+if __name__ == "__main__":
+    # Create heroes
+    hero1 = Hero("Wonder Woman", 200)
+    hero2 = Hero("Iron Man", 150)
+    hero3 = Hero("Deadpool", 180)
+
+# Create team
+team = Team("Justice League")
