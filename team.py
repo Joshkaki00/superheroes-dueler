@@ -1,5 +1,3 @@
-from hero import Hero
-
 class Team:
     def __init__(self, name):
         ''' Initialize team with a name and an empty list of heroes.'''
