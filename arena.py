@@ -39,39 +39,45 @@ class Arena:
         return Armor(name, max_block)
 
     def create_hero(self):
-        ''' Prompt user for Hero info
-            return Hero with values from user input'''
-        hero_name = input("Hero's name: ")
-        hero = Hero(hero_name)
-        add_item = None
+        '''Prompt user for Hero info and return a Hero object'''
         while True:
-            add_item = input("[1] Add ability\n[2] Add weapons\n[3] Add armor\n[4] Done adding items\n\nYour choice: ")
-            if add_item == "1":
-                ability = self.create_ability()
-                hero.add_ability(ability)
-            elif add_item == "2":
-                weapon = self.create_weapon()
-                hero.add_ability(weapon)
-            elif add_item == "3":
-                armor = self.create_armor()
-                hero.add_armor(armor)
-            elif add_item == "4":
-                break
-            else:
-                print("Invalid choice. Please select a valid option.")
+            hero_name = input("Hero's name: ").strip()
+            if not hero_name:
+                print("Hero name cannot be empty. Please try again.")
+                continue  # Retry until valid input is provided
+
+            hero = Hero(hero_name)
+            while True:
+                add_item = input("[1] Add ability\n[2] Add weapon\n[3] Add armor\n[4] Done adding items\n\nYour choice: ")
+                if add_item == "1":
+                    ability = self.create_ability()
+                    hero.add_ability(ability)
+                elif add_item == "2":
+                    weapon = self.create_weapon()
+                    hero.add_ability(weapon)
+                elif add_item == "3":
+                    armor = self.create_armor()
+                    hero.add_armor(armor)
+                elif add_item == "4":
+                    break  # Exit the loop when done adding items
+                else:
+                    print("Invalid choice. Please select a valid option.")
+            return hero
 
     def build_team_one(self):
-        ''' Prompt the user to build team_one '''
+        '''Prompt the user to build team_one'''
         num_of_heroes = int(input("How many members would you like on Team One? "))
         for _ in range(num_of_heroes):
             hero = self.create_hero()
-            self.team_one.add_hero(hero)
+            if hero:  # Only add non-None hero objects
+                self.team_one.add_hero(hero)
 
-    def build_team_two(self):
-        ''' Prompt the user to build team_two '''
-        num_of_heroes = int(input("How many members would you like on Team Two? "))
-        for _ in range(num_of_heroes):
-            hero = self.create_hero()
+def build_team_two(self):
+    '''Prompt the user to build team_two'''
+    num_of_heroes = int(input("How many members would you like on Team Two? "))
+    for _ in range(num_of_heroes):
+        hero = self.create_hero()
+        if hero:  # Only add non-None hero objects
             self.team_two.add_hero(hero)
 
     def team_battle(self):
