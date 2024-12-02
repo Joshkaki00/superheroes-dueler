@@ -45,3 +45,11 @@ class Team:
         living_heroes = [hero for hero in self.heroes if hero.is_alive()]
         living_opponents = [hero for hero in other_team.heroes if hero.is_alive()]
 
+        while living_heroes and living_opponents:
+            hero = random.choice(living_heroes)
+            opponent = random.choice(living_opponents)
+
+            hero.fight(opponent)
+
+            living_heroes = [hero for hero in self.heroes if hero.is_alive()]
+            living_opponents = [hero for hero in other_team.heroes if hero.is_alive()]
