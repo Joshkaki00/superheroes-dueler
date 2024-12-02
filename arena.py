@@ -44,3 +44,10 @@ class Arena:
                 armor = self.create_armor()
                 hero.add_armor(armor)
         return hero
+
+    def build_team_one(self):
+        ''' Prompt the user to build team_one '''
+        num_of_heroes = int(input("How many members would you like on Team One? "))
+        for _ in range(num_of_heroes):
+            hero = self.create_hero()
+            self.team_one.add_hero(hero)
