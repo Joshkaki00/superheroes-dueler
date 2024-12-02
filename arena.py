@@ -30,7 +30,12 @@ class Arena:
         ''' Prompt user for Armor info
             return Armor with values from user input'''
         name = input("What is the armor name? ")
-        max_block = int(input("What is the max block of the armor? "))
+        while True:
+            try:
+                max_block = int(input("What is the max block of the armor? "))
+                break
+            except ValueError:
+                print("Please enter a valid number.")
         return Armor(name, max_block)
 
     def create_hero(self):
@@ -39,8 +44,8 @@ class Arena:
         hero_name = input("Hero's name: ")
         hero = Hero(hero_name)
         add_item = None
-        while add_item != "4":
-            add_item = input(f"[1] Add ability\n [2] Add weapons\n[3] Add armor\n[4] Done adding items\n\nYour choice: ")
+        while True:
+            add_item = input("[1] Add ability\n[2] Add weapons\n[3] Add armor\n[4] Done adding items\n\nYour choice: ")
             if add_item == "1":
                 ability = self.create_ability()
                 hero.add_ability(ability)
@@ -50,7 +55,10 @@ class Arena:
             elif add_item == "3":
                 armor = self.create_armor()
                 hero.add_armor(armor)
-        return hero
+            elif add_item == "4":
+                break
+            else:
+                print("Invalid choice. Please select a valid option.")
 
     def build_team_one(self):
         ''' Prompt the user to build team_one '''
