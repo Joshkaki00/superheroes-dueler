@@ -6,11 +6,11 @@ Superhero Team Dueler is a Python-based game where two teams of superheroes batt
 
 1. Clone the repository:
     ```sh
-    git clone (https://github.com/yourusername/superhero-team-dueler.git)
+    git clone (https://github.com/yourusername/superheroes-dueler.git)
     ```
 2. Navigate to the project directory:
     ```sh
-    cd superhero-team-dueler
+    cd superheroes-dueler
     ```
 
 ## Usage
