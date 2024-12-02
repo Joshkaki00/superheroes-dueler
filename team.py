@@ -49,6 +49,9 @@ class Team:
             hero = random.choice(living_heroes)
             opponent = random.choice(living_opponents)
 
+            print(f"{hero.name} battles {opponent.name}")
+            hero.fight(opponent)
+
         if not living_heroes and not living_opponents:
             print("Both teams have been eliminated!")
         elif not living_heroes:
