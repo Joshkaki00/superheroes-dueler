@@ -83,3 +83,37 @@ class Arena:
         if team_two_deaths == 0:
             team_two_deaths = 1
         print(f"Team Two average K/D: {team_two_kills/team_two_deaths:.2f}")
+
+        # Show surviving heroes
+        for hero in self.team_one.heroes:
+            if hero.is_alive():
+                print(f"Survivor from Team One: {hero.name}")
+        for hero in self.team_two.heroes:
+            if hero.is_alive():
+                print(f"Survivor from Team Two: {hero.name}")
+
+# Game Loop
+if __name__ == "__main__":
+    game_is_running = True
+
+    # Instantiate Game Arena
+    arena = Arena()
+
+    # Build Teams
+    arena.build_team_one()
+    arena.build_team_two()
+
+    while game_is_running:
+        # Battle teams
+        arena.team_battle()
+
+        # Show results of the battle
+        arena.show_stats()
+
+        play_again = input("Play Again? Y or N: ")
+        if play_again.lower() == "n":
+            game_is_running = False
+        else:
+            # Revive heroes to play again
+            arena.team_one.revive_heroes()
+            arena.team_two.revive_heroes()
