@@ -88,29 +88,3 @@ class Hero:
         print(f"{opponent.name} won!")
       else:
         print("Both heroes have fallen!")
-
-
-# Test code
-if __name__ == "__main__":
-  # Create abilities
-  ability1 = Ability("Super Speed", 300)
-  ability2 = Ability("Super Eyes", 130)
-  ability3 = Ability("Wizard Wand", 80)
-  ability4 = Ability("Wizard Beard", 20)
-
-  # Create heroes
-  hero1 = Hero("Wonder Woman")
-  hero2 = Hero("Dumbledore")
-
-  # Add abilities to heroes
-  hero1.add_ability(ability1)
-  hero1.add_ability(ability2)
-  hero2.add_ability(ability3)
-  hero2.add_ability(ability4)
-
-  # Add armor to heroes
-  hero1.add_armor(Armor("Shield", 50))
-  hero2.add_armor(Armor("Magic Robe", 40))
-
-  # Engage in a fight
-  hero1.fight(hero2)
