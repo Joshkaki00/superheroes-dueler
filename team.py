@@ -45,9 +45,10 @@ class Team:
             hero.current_health = hero.starting_health
 
     def attack(self, other_team):
-        ''' Battle each team against each other'''
-        living_heroes = [hero for hero in self.heroes if hero and hero.is_alive()]
-        living_opponents = [hero for hero in other_team.heroes if hero and hero.is_alive()]
+        '''Battle each team against each other'''
+        # Ensure only living heroes are considered
+        living_heroes = [hero for hero in self.heroes if hero.is_alive()]
+        living_opponents = [hero for hero in other_team.heroes if hero.is_alive()]
 
         while living_heroes and living_opponents:
             hero = random.choice(living_heroes)
@@ -56,9 +57,15 @@ class Team:
             print(f"{hero.name} battles {opponent.name}")
             hero.fight(opponent)
 
+            # Refresh the lists of living heroes after the fight
+            living_heroes = [hero for hero in self.heroes if hero.is_alive()]
+            living_opponents = [hero for hero in other_team.heroes if hero.is_alive()]
+
+        # Determine the outcome
         if not living_heroes and not living_opponents:
             print("Both teams have been eliminated!")
         elif not living_heroes:
             print(f"Team {other_team.name} wins!")
         else:
             print(f"Team {self.name} wins!")
+
