@@ -25,35 +25,3 @@ class Team:
             return
         for hero in self.heroes:
             print(hero.name)
-
-# Test Team class
-if __name__ == "__main__":
-    # Add a __str__ method to Hero class
-    Hero.__str__ = lambda self: self.name
-
-    # Create heroes
-    hero1 = Hero("Wonder Woman", 200)
-    hero2 = Hero("Iron Man", 150)
-    hero3 = Hero("Deadpool", 180)
-
-    # Create team
-    team = Team("Justice League")
-
-    # Add heroes to the team
-    team.add_hero(hero1)
-    team.add_hero(hero2)
-    team.add_hero(hero3)
-
-    # Print heroes
-    print("Team members:")
-    team.view_all_heroes()
-
-    # Remove a hero and print updated team
-    removed_hero = team.remove_hero("Iron Man")
-    if removed_hero == 0:
-        print(f"\nHero not found!")
-    else:
-        print(f"\nRemoved hero: {removed_hero}")
-
-    print(f"\nUpdated team members:")
-    team.view_all_heroes()
