@@ -62,3 +62,10 @@ class Arena:
     def team_battle(self):
         ''' Battle teams against each other '''
         self.team_one.attack(self.team_two)
+
+    def show_stats(self):
+        ''' Show the team's stats '''
+        print(f"\nTeam One statistics: ")
+        self.team_one.stats()
+        print(f"\nTeam Two statistics: ")
+        self.team_two.stats()
