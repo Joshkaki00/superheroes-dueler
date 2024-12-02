@@ -41,8 +41,8 @@ class Team:
 
     def attack(self, other_team):
         ''' Battle each team against each other'''
-        living_heroes = [hero for hero in self.heroes if hero.is_alive()]
-        living_opponents = [hero for hero in other_team.heroes if hero.is_alive()]
+        living_heroes = [hero for hero in self.heroes if hero and hero.is_alive()]
+        living_opponents = [hero for hero in other_team.heroes if hero and hero.is_alive()]
 
         while living_heroes and living_opponents:
             hero = random.choice(living_heroes)
