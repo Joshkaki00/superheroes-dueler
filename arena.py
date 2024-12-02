@@ -72,13 +72,13 @@ class Arena:
             if hero:  # Only add non-None hero objects
                 self.team_one.add_hero(hero)
 
-def build_team_two(self):
-    '''Prompt the user to build team_two'''
-    num_of_heroes = int(input("How many members would you like on Team Two? "))
-    for _ in range(num_of_heroes):
-        hero = self.create_hero()
-        if hero:  # Only add non-None hero objects
-            self.team_two.add_hero(hero)
+    def build_team_two(self):
+        '''Prompt the user to build team_two'''
+        num_of_heroes = int(input("How many members would you like on Team Two? "))
+        for _ in range(num_of_heroes):
+            hero = self.create_hero()
+            if hero:  # Only add non-None hero objects
+                self.team_two.add_hero(hero)
 
     def team_battle(self):
         ''' Battle teams against each other '''
